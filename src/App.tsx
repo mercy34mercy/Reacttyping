@@ -1,11 +1,5 @@
-import React, { useEffect } from 'react';
-import logo from './logo.svg';
+import React, { useCallback, useEffect } from 'react';
 import './App.css';
-
-
-type counter = {
-  count: number
-}
 
 const Game = () => {
   return (
@@ -14,45 +8,47 @@ const Game = () => {
 }
 
 const Inputbar = () => {
-  const questions: string[] = ["watnow", "gutti"]
+  const questions: string[] = ["watnow", "gutti","react","vue","kotlin","swift","python"]
   const [counter, setCounter] = React.useState(0);
   const [questioncounter, setQuestioncounter] = React.useState(0);
-  const [inputValue, setInputValue] = React.useState("");
   const [answerstring,setAnswer] = React.useState("")
   const questionlength:number = questions[questioncounter].length
 
-  const handlechenge = (event:any) => {
-    setInputValue(event.target.value);
-    judgement(event.target.value)
-  };
 
-  const judgement = (value: string) => {
-    
-
-    const len = value.length
-
-    if (questions[questioncounter][counter] === value[len - 1]) {
+  const handleKeyDown = useCallback((e) => {
+    console.log(e.key)
+    if (questions[questioncounter][counter] === e.key) {
       setCounter(counter + 1)
-      setAnswer(answerstring + value[len - 1])
+      setAnswer(answerstring + e.key)
+      const c = counter
+      console.log("value", e.key, "counter", c)
       console.log("正解")
     }
+  }, [counter, answerstring,questioncounter])
 
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown, false)
     if (questions[questioncounter].length === counter) {
       setCounter(0)
       setQuestioncounter(questioncounter + 1)
-      setAnswer("")
       console.log("reset")
     }
+  }, [counter, answerstring, questioncounter,handleKeyDown])
 
-  }
+  // const judgement = (value: string) => {
 
-
-
+  //   if (questions[questioncounter][counter] === value) {
+  //     setCounter(counter + 1)
+  //     setAnswer(answerstring + value)
+  //     const c = counter
+  //     console.log("value", value, "counter", c)
+  //     console.log("正解")
+  //   }
+  // }
 
   return (
-    <div className='inputbar'>
-      <QuestionBox question={questions} questionnum={questioncounter}></QuestionBox>
-      <input value={inputValue} onChange={handlechenge}></input>  
+    <div className='inputbar' onKeyDown={handleKeyDown}>
+      <QuestionBox question={questions} questionnum={questioncounter}></QuestionBox> 
       <Textoutput text={answerstring} num={counter} questionnum={questionlength}></Textoutput> 
     </div>
   )
@@ -71,11 +67,6 @@ type QuestionProps = {
 }
 
 const QuestionBox = (props:QuestionProps) => {
-  useEffect(() => {
-    console.log(props.questionnum)
-  })
-
-
   return (
     <div className='questionBox'>
       {props.question[props.questionnum]}
@@ -96,32 +87,11 @@ const Textoutput = (props: Props) => {
 
   return (
     <div className='textoutput'>
-      <p>{str}</p>
+      <p>{props.text}</p>
       <p>{props.num}</p>
     </div>
   )
 
-}
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
 }
 
 export default Game;
