@@ -14,12 +14,12 @@ const Game = () => {
 }
 
 const Inputbar = () => {
-  const question: string[] = ["watnow", "gutti"]
+  const questions: string[] = ["watnow", "gutti"]
   const [counter, setCounter] = React.useState(0);
   const [questioncounter, setQuestioncounter] = React.useState(0);
   const [inputValue, setInputValue] = React.useState("");
   const [answerstring,setAnswer] = React.useState("")
-  const questionlength:number = question[questioncounter].length
+  const questionlength:number = questions[questioncounter].length
 
   const handlechenge = (event:any) => {
     setInputValue(event.target.value);
@@ -31,19 +31,19 @@ const Inputbar = () => {
 
     const len = value.length
 
-    if (question[questioncounter][counter] === value[len - 1]) {
+    if (questions[questioncounter][counter] === value[len - 1]) {
       setCounter(counter + 1)
       setAnswer(answerstring + value[len - 1])
       console.log("正解")
     }
 
-    console.log("q", question[questioncounter].length,"\nc",counter)
-    if (question[questioncounter].length === counter) {
+    if (questions[questioncounter].length === counter) {
       setCounter(0)
       setQuestioncounter(questioncounter + 1)
       setAnswer("")
       console.log("reset")
     }
+
   }
 
 
@@ -51,8 +51,9 @@ const Inputbar = () => {
 
   return (
     <div className='inputbar'>
+      <QuestionBox question={questions} questionnum={questioncounter}></QuestionBox>
       <input value={inputValue} onChange={handlechenge}></input>  
-      <Textoutput text={answerstring} num={counter} questionnum={questionlength}></Textoutput>
+      <Textoutput text={answerstring} num={counter} questionnum={questionlength}></Textoutput> 
     </div>
   )
 }
@@ -64,10 +65,29 @@ type Props = {
   questionnum:number
 }
 
+type QuestionProps = {
+  question: string[];
+  questionnum: number;
+}
+
+const QuestionBox = (props:QuestionProps) => {
+  useEffect(() => {
+    console.log(props.questionnum)
+  })
+
+
+  return (
+    <div className='questionBox'>
+      {props.question[props.questionnum]}
+    </div>
+  );
+}
+
 const Textoutput = (props: Props) => {
   const [str, setstr] = React.useState("")
   
   useEffect(() => {
+    console.log("q", props.num, "\nc", props.questionnum)
     setstr(props.text)
     if (props.num === props.questionnum) {
       setstr("")
