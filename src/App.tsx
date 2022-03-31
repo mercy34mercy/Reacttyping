@@ -1,3 +1,4 @@
+import { count } from 'console';
 import React, { useCallback, useEffect } from 'react';
 import './App.css';
 
@@ -20,8 +21,8 @@ const Inputbar = () => {
 
   const judgement = (value: string) => {
     if (questions[questioncounter][counter] === value) {
-      setCounter(counter + 1)
       setAnswer(answerstring + value)
+      setCounter(counter + 1)
       const c = counter
       console.log("value", value, "counter", c)
       console.log("正解")
@@ -36,19 +37,33 @@ const Inputbar = () => {
     }
   })
 
+  
+
+  const textOutputList = questions[questioncounter].split('').map((questionChar, index) => {
+    console.log("index",index)
+      return(
+        <a><Textoutput key={questionChar} valuekey={index+1}value={questionChar} answernum={counter}> </Textoutput></a>
+      )
+    })
+
+
   return (
     <div className='inputbar' onKeyDown={(e) => handleKey(e)} tabIndex={0}>
+      <div className='game'>
       <QuestionBox question={questions} questionnum={questioncounter}></QuestionBox>
-      <Textoutput text={answerstring} num={counter} questionnum={questionlength}></Textoutput>
+      <div className='textOutput'>{textOutputList}</div>
+      </div>
     </div>
   )
 }
 
 
 type TextOutputProps = {
-  text: string
-  num: number
-  questionnum: number
+  children: string;
+  key: string;
+  value: string;
+  answernum: number;
+  valuekey: number;
 }
 
 type QuestionProps = {
@@ -65,11 +80,18 @@ const QuestionBox = (props: QuestionProps) => {
 }
 
 const Textoutput = (props: TextOutputProps) => {
+  console.log("key",props.answernum)
+  if (props.valuekey <= props.answernum) {
+    return (
+      <a className='colorBlack'>
+        {props.value}
+      </a>
+    )
+  }
   return (
-    <div className='textoutput'>
-      <p>{props.text}</p>
-      <p>{props.num}</p>
-    </div>
+    <a className='colorGray'>
+      {props.value}
+    </a>
   )
 }
 

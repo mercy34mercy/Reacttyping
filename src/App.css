@@ -1,3 +1,23 @@
 .inputbar{
   height: 100vh;
 }
+
+.questionBox{
+  height: 5rem;
+  font-size:3rem;
+  text-align: center;
+}
+
+.textOutput{
+  font-size: 3rem;
+  text-align: center;
+}
+
+.colorBlack{
+  color: black;
+}
+
+.colorGray{
+  color: whitesmoke;
+}
+
