@@ -8,57 +8,47 @@ const Game = () => {
 }
 
 const Inputbar = () => {
-  const questions: string[] = ["watnow", "gutti","react","vue","kotlin","swift","python"]
+  const questions: string[] = ["watnow", "gutti", "react", "vue", "kotlin", "swift", "python"]
   const [counter, setCounter] = React.useState(0);
   const [questioncounter, setQuestioncounter] = React.useState(0);
-  const [answerstring,setAnswer] = React.useState("")
-  const questionlength:number = questions[questioncounter].length
+  const [answerstring, setAnswer] = React.useState("")
+  const questionlength: number = questions[questioncounter].length
 
+  const handleKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    judgement(e.key)
+  }
 
-  const handleKeyDown = useCallback((e) => {
-    console.log(e.key)
-    if (questions[questioncounter][counter] === e.key) {
+  const judgement = (value: string) => {
+    if (questions[questioncounter][counter] === value) {
       setCounter(counter + 1)
-      setAnswer(answerstring + e.key)
+      setAnswer(answerstring + value)
       const c = counter
-      console.log("value", e.key, "counter", c)
+      console.log("value", value, "counter", c)
       console.log("正解")
     }
-  }, [counter, answerstring,questioncounter])
+  }
 
   useEffect(() => {
-    document.addEventListener("keydown", handleKeyDown, false)
-    if (questions[questioncounter].length === counter) {
-      setCounter(0)
+    if (questionlength === counter) {
       setQuestioncounter(questioncounter + 1)
-      console.log("reset")
+      setAnswer("")
+      setCounter(0)
     }
-  }, [counter, answerstring, questioncounter,handleKeyDown])
-
-  // const judgement = (value: string) => {
-
-  //   if (questions[questioncounter][counter] === value) {
-  //     setCounter(counter + 1)
-  //     setAnswer(answerstring + value)
-  //     const c = counter
-  //     console.log("value", value, "counter", c)
-  //     console.log("正解")
-  //   }
-  // }
+  })
 
   return (
-    <div className='inputbar' onKeyDown={handleKeyDown}>
-      <QuestionBox question={questions} questionnum={questioncounter}></QuestionBox> 
-      <Textoutput text={answerstring} num={counter} questionnum={questionlength}></Textoutput> 
+    <div className='inputbar' onKeyDown={(e) => handleKey(e)} tabIndex={0}>
+      <QuestionBox question={questions} questionnum={questioncounter}></QuestionBox>
+      <Textoutput text={answerstring} num={counter} questionnum={questionlength}></Textoutput>
     </div>
   )
 }
 
 
-type Props = {
+type TextOutputProps = {
   text: string
   num: number
-  questionnum:number
+  questionnum: number
 }
 
 type QuestionProps = {
@@ -66,7 +56,7 @@ type QuestionProps = {
   questionnum: number;
 }
 
-const QuestionBox = (props:QuestionProps) => {
+const QuestionBox = (props: QuestionProps) => {
   return (
     <div className='questionBox'>
       {props.question[props.questionnum]}
@@ -74,24 +64,13 @@ const QuestionBox = (props:QuestionProps) => {
   );
 }
 
-const Textoutput = (props: Props) => {
-  const [str, setstr] = React.useState("")
-  
-  useEffect(() => {
-    console.log("q", props.num, "\nc", props.questionnum)
-    setstr(props.text)
-    if (props.num === props.questionnum) {
-      setstr("")
-    }
-  });
-
+const Textoutput = (props: TextOutputProps) => {
   return (
     <div className='textoutput'>
       <p>{props.text}</p>
       <p>{props.num}</p>
     </div>
   )
-
 }
 
 export default Game;
