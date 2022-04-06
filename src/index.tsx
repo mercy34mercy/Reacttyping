@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import Game from './App';
+import { RouterConfig } from './RouterConfig';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Game />
+    <RouterConfig></RouterConfig>
   </React.StrictMode>,
   document.getElementById('root')
 );

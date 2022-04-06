@@ -1,23 +1,53 @@
-.inputbar{
-  height: 100vh;
+.inputbar {
+  background: black;
+  border-radius: 2rem;
+  width: 60%;
 }
 
-.questionBox{
+.questionBox {
   height: 5rem;
-  font-size:3rem;
+  font-size: 3rem;
   text-align: center;
+  color: whitesmoke;
 }
 
-.textOutput{
+.textOutput {
+  height: 5rem;
   font-size: 3rem;
   text-align: center;
 }
 
-.colorBlack{
-  color: black;
+.colorGray {
+  color: gray;
 }
 
-.colorGray{
+.colorwhiteGray {
   color: whitesmoke;
 }
 
+.Game {
+  text-align: center;
+}
+
+html{
+  height: 100%;
+  color: whitesmoke;
+}
+
+.startGame {
+  
+}
+
+.startButton{
+  width: 10%;
+}
+
+.kanban{
+
+  width: 50rem;
+}
+
+.manue{
+  width: 100%;
+  text-align: center;
+}
