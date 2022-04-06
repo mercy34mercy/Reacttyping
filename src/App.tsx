@@ -1,14 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import './App.css';
 
-
-
-const Index = () => {
-  return (
-    <div className=''></div>
-  )
-}
-
 export const Game = () => {
   const [inputString, setinputString] = React.useState("")
 
@@ -88,7 +80,7 @@ const Inputbar = (props: InputbarProps) => {
   })
 
 
-  if (gamestart) {
+
     return (
       <div className='inputbar'>
         <div className='game'>
@@ -97,13 +89,7 @@ const Inputbar = (props: InputbarProps) => {
         </div>
       </div>
     )
-  }
-
-  return (
-    <div className='startGame'>
-      <StartGame onClick={gameStart}></StartGame>
-    </div>
-  )
+  
 }
 
 
@@ -120,19 +106,6 @@ type QuestionProps = {
   questionnum: number;
 }
 
-type StartGameProps = {
-  onClick: any
-}
-
-const StartGame = (props: StartGameProps) => {
-  return (
-    <div className='manue'>
-
-      <p><img className='kanban' src="./kanban.png"></img></p>
-      <p><img className='startButton' src="./startbutton.png" onClick={props.onClick}></img></p>
-    </div>
-  )
-}
 
 const QuestionBox = (props: QuestionProps) => {
   return (
