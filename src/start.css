@@ -1,0 +1,23 @@
+.manue{
+    height: 100%;
+    background-image: url("../public/city.png");
+    background-size: cover;
+    /* padding: 10rem; */
+}
+
+.manuebar{
+    padding-top: 6rem;
+}
+
+.startButton{
+    padding-top:30rem;
+    width: 100%;
+    color: #008AE2;
+    text-align: center;
+    font-family: "Nico Moji";
+    font-size: 5rem;
+}
+
+
+
+

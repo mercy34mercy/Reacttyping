@@ -1,18 +1,21 @@
 .inputbar {
-  background-image: url("../public/inputbar.png");
-  background-size: cover;
   border-radius: 2rem;
-  width: 70rem;
-  height: 20rem;
-  margin: 0 auto;
+  width: 100%;
+  padding-top: 20vh;
+  
+}
+
+.baranimation{
+    animation: anim 2.5s infinite linear;
 }
 
 .questionBox {
-  padding-top: 5rem;
-  font-size: 3rem;
+  padding-top: 5.5rem;
+  font-size: 5rem;
   height: 6rem;
   text-align: center;
-  color: whitesmoke;
+  color: #008AE2;
+  font-weight:bold
 }
 
 .textOutput {
@@ -23,34 +26,66 @@
 }
 
 .colorGray {
-  color: gray;
+  color: #008AE2;
 }
 
 .colorwhiteGray {
-  color: whitesmoke;
+  color: black;
+}
+
+.blue {
+  filter: invert(8%) sepia(99%) saturate(7044%) hue-rotate(247deg) brightness(100%) contrast(145%);
 }
 
 .Game {
   /* text-align: center; */
-  padding-top: 40vh;  
-}
-
-html{
   height: 100%;
-  color: whitesmoke;
+  background-image: url("../public/city.png");
+  background-size:cover;
+  /* backdrop-filter: invert(8%) sepia(99%) saturate(7044%) hue-rotate(247deg) brightness(100%) contrast(145%); */
+}
+
+.Game img{
+  filter: invert(8%) sepia(99%) saturate(7044%) hue-rotate(247deg) brightness(100%) contrast(145%);
+}
+
+.game {
+  background-image: url("../public/inputbar.png");
+  background-size: cover;
+  width: 70rem;
+  height: 20rem;
+  margin: 0 auto;
 }
 
 
-.startButton{
-  width: 10%;
-}
-
-.kanban{
+.kanban {
 
   width: 50rem;
 }
 
-.manue{
+.manue {
   width: 100%;
   text-align: center;
+}
+
+@keyframes animstart {
+  0% {
+    transform: translateX(200vw);
+  }
+
+
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes animend {
+  0% {
+    transform: translateX(0px);
+  }
+
+
+  100% {
+    transform: translateX(-200vh);
+  }
 }
