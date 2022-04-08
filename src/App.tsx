@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import './App.css';
 
 export const Game = () => {
+  const [startTime, setstartTime] = React.useState(Date.now())
+  // const [endTime,setendTime] = React.useState(performance.now())
   const [inputString, setinputString] = React.useState("")
   const [typeStringlen, settypeStringlen] = React.useState(0)
   const [answerTypeStringlen, setanswerTypeStringlen] = React.useState(0)
@@ -10,7 +12,6 @@ export const Game = () => {
 
   useEffect(() => {
     document.addEventListener("keydown", keyFunction, false)
-    console.log("answernum", answerTypeStringlen)
   })
 
 
@@ -26,17 +27,19 @@ export const Game = () => {
 
   return (
     <div className='Game'>
-      <Inputbar answerString={inputString} updatetypeStringlen={settypeStringlen} updateanswerTypeStringlen={setanswerTypeStringlen} typeStringnum={typeStringlen} answerStringnum={answerTypeStringlen}></Inputbar>
+      <Inputbar  updateInputString={setinputString} answerString={inputString} updatetypeStringlen={settypeStringlen} updateanswerTypeStringlen={setanswerTypeStringlen} typeStringnum={typeStringlen} answerStringnum={answerTypeStringlen} starttime={startTime}></Inputbar>
     </div>
   )
 }
 
 type InputbarProps = {
+  updateInputString: any;
   answerString: string;
   typeStringnum: number;
   answerStringnum: number;
   updatetypeStringlen: any;
   updateanswerTypeStringlen: any;
+  starttime: number;
 }
 
 const Inputbar = (props: InputbarProps) => {
@@ -77,20 +80,24 @@ const Inputbar = (props: InputbarProps) => {
       props.updateanswerTypeStringlen(props.answerStringnum + 1)
       setAnswer(answerstring + value)
       setCounter(counter + 1)
+      props.updateInputString("")
     }
     // props.updatetypeStringlen(props.typeStringnum + 1)
   }
 
   useEffect(() => {
+    console.log(props.starttime)
     if (questioncounter > 10) {
-      navigate("/result")
+      const endTime = Date.now()
+      console.log(endTime);
+      const time:number = endTime-props.starttime
+      navigate("/result", { state: { answernum: props.answerStringnum ,time:time} })
     }
 
     judgement(props.answerString)
 
     if (questionlength === counter) {
       setQuestioncounter(questioncounter + 1)
-      setCssStyle("baranimation")
       setAnswer("")
       setCounter(0)
     }
@@ -148,7 +155,6 @@ const QuestionBox = (props: QuestionProps) => {
 }
 
 const Textoutput = (props: TextOutputProps) => {
-  console.log("key", props.answernum)
   if (props.valuekey <= props.answernum) {
     return (
       <a className='colorGray'>
