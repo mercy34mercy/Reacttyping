@@ -45,8 +45,8 @@ type InputbarProps = {
 const Inputbar = (props: InputbarProps) => {
   const navigate = useNavigate();
   const questions2: string[][] = [
-    ["烏丸丸太町", "karasumamarutamati"],
-    ["四条河原町", "sizyoukawaramati"],
+    ["烏丸丸太町", "からすままるたまち"],
+    ["四条河原町", "しじょうかわらまち"],
     ["葛野大路五条", "kadonooozigozyou"],
     ["川端御池", "kawabataoike"],
     ["川端二条","kawabatanizyou"],
