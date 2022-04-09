@@ -1,201 +1,350 @@
 import { type } from '@testing-library/user-event/dist/type';
 import React, { } from 'react';
 
-const key = () => {
+type keyprops = {
+    question: string
+}
 
-    var _specificConvertList =
-    {
-        "ゃ": ["ya", "ha", "a"],
-        "ゅ": ["yu", "hu", "u"],
-        "ょ": ["yo", "ho", "o"],
-        "ぁ": ["", "ha", "a"],
-        "ぃ": ["yi", "hi", "i"],
-        "ぅ": ["", "hu", "u"],
-        "ぇ": ["ye", "he", "e"],
-        "ぉ": ["", "", "ho"]
+export const Key = (props: keyprops) => {
+
+    const [createdString, setcreateString] = React.useState("")
+    const [str, setstr] = React.useState("")
+
+    const createString = () => {
+        if(props.question.length == 1){
+            return specificStringConvert(props.question[0])
+        }else{
+            console.log(specificStringConvert(props.question[0] + props.question[1]))
+            return specificStringConvert(props.question[0] + props.question[1])
+        }
     }
 
-    const _convertList = (char: string) => {
+    const _specificConvertList = (char: string): string[] => {
+        switch (char) {
+            case "ゃ":
+                return ["ya", "ha", "a"]
+            case "ゅ":
+                return ["yu", "hu", "u"]
+            case "ょ":
+                return ["yo", "ho", "o"]
+            case "ぁ":
+                return ["", "ha", "a"]
+            case "ぃ":
+                return ["yi", "hi", "i"]
+            case "ぅ":
+                return ["", "hu", "u"]
+            case "ぇ":
+                return ["ye", "he", "e"]
+            case "ぉ":
+                return ["", "", "ho"]
+        }
+        return ["e"]
+    }
+
+    const _convertList = (char: string): string[] => {
         switch (char) {
             case "あ":
-                return ["a"] as string[]
+                return ["a"]
             case "い":
-                return ["i"]as string[]
+                return ["i"]
             case "う":
-                return ["u", "wu"]as string[]
+                return ["u", "wu"]
             case "え":
-                return ["e"]as string[]
+                return ["e"]
             case "お":
-                return ["o"]as string[]
+                return ["o"]
             case "か":
-                return ["ka", "ca"]as string[]
+                return ["ka", "ca"]
             case "き":
-                return ["ki"]as string[]
+                return ["ki"]
             case "く":
-                return ["ku"]as string[]
+                return ["ku"]
             case "け":
-                return ["ke"]as string[]
+                return ["ke"]
             case "こ":
-                return ["ko", "co"]as string[]
+                return ["ko", "co"]
             case "さ":
-                return ["sa"]as string[]
+                return ["sa"]
             case "し":
-                return ["shi", "si", "ci"]as string[]
+                return ["shi", "si", "ci"]
             case "す":
-                return ["su"]as string[]
+                return ["su"]
             case "せ":
-                return ["se", "ce"]as string[]
+                return ["se", "ce"]
             case "そ":
-                return ["so"]as string[]
+                return ["so"]
             case "た":
-                return ["ta"]as string[]
+                return ["ta"]
             case "ち":
-                return ["chi", "ti"]as string[]
+                return ["chi", "ti"]
             case "つ":
-                return ["tsu", "tu"]as string[]
+                return ["tsu", "tu"]
             case "て":
-                return ["te"]as string[]
+                return ["te"]
             case "と":
-                return ["to"]as string[]
+                return ["to"]
             case "な":
-                return ["na"]as string[]
+                return ["na"]
             case "に":
-                return ["ni"]as string[]
+                return ["ni"]
             case "ぬ":
-                return ["nu"]as string[]
+                return ["nu"]
             case "ね":
-                return ["ne"]as string[]
+                return ["ne"]
             case "の":
-                return ["no"]as string[]
+                return ["no"]
             case "は":
-                return ["ha"]as string[]
+                return ["ha"]
             case "ひ":
-                return ["hi"]as string[]
+                return ["hi"]
             case "ふ":
-                return ["fu", "hu"]as string[]
+                return ["fu", "hu"]
             case "へ":
-                return ["he"]as string[]
+                return ["he"]
             case "ほ":
-                return ["ho"]as string[]
+                return ["ho"]
             case "ま":
-                return ["ma"]as string[]
+                return ["ma"]
             case "み":
-                return ["mi"]as string[]
+                return ["mi"]
             case "む":
-                return ["mu"]as string[]
+                return ["mu"]
             case "め":
-                return ["me"]as string[]
+                return ["me"]
             case "も":
-                return ["mo"]as string[]
+                return ["mo"]
             case "や":
-                return ["ya"]as string[]
+                return ["ya"]
             case "ゆ":
-                return ["yu"]as string[]
+                return ["yu"]
             case "よ":
-                return ["yo"]as string[]
+                return ["yo"]
             case "ら":
-                return ["ra"]as string[]
+                return ["ra"]
             case "り":
-                return ["ri"]as string[]
+                return ["ri"]
             case "る":
-                return ["ru"]as string[]
+                return ["ru"]
             case "れ":
-                return ["re"]as string[]
+                return ["re"]
             case "ろ":
-                return ["ro"]as string[]
+                return ["ro"]
             case "わ":
-                return ["wa"]as string[]
+                return ["wa"]
             case "を":
-                return ["wo"]as string[]
+                return ["wo"]
             case "ん":
-                return ["nn", "xn"]as string[]
+                return ["nn", "xn"]
             case "が":
-                return ["ga"]as string[]
+                return ["ga"]
             case "ぎ":
-                return ["gi"]as string[]
+                return ["gi"]
             case "ぐ":
-                return ["gu"]as string[]
+                return ["gu"]
             case "げ":
-                return ["ge"]as string[]
+                return ["ge"]
             case "ご":
-                return ["go"]as string[]
+                return ["go"]
             case "ざ":
-                return ["za"]as string[]
+                return ["za"]
             case "じ":
-                return ["zi", "ji"]as string[]
+                return ["zi", "ji"]
             case "ず":
-                return ["zu"]as string[]
+                return ["zu"]
             case "ぜ":
-                return ["ze"]as string[]
+                return ["ze"]
             case "ぞ":
-                return ["zo"]as string[]
+                return ["zo"]
             case "だ":
-                return ["da"]as string[]
+                return ["da"]
             case "ぢ":
-                return ["di"]as string[]
+                return ["di"]
             case "づ":
-                return ["du"]as string[]
+                return ["du"]
             case "で":
-                return ["de"]as string[]
+                return ["de"]
             case "ど":
-                return ["do"]as string[]
+                return ["do"]
             case "ば":
-                return ["ba"]as string[]
+                return ["ba"]
             case "び":
-                return ["bi"]as string[]
+                return ["bi"]
             case "ぶ":
-                return ["bu"]as string[]
+                return ["bu"]
             case "べ":
-                return ["be"]as string[]
+                return ["be"]
             case "ぼ":
-                return ["bo"]as string[]
+                return ["bo"]
             case "ぱ":
-                return ["pa"]as string[]
+                return ["pa"]
             case "ぴ":
-                return ["pi"]as string[]
+                return ["pi"]
             case "ぷ":
-                return ["pu"]as string[]
+                return ["pu"]
             case "ぺ":
-                return ["pe"]as string[]
+                return ["pe"]
             case "ぽ":
-                return ["po"]as string[]
+                return ["po"]
             case "ぁ":
-                return ["la", "xa"]as string[]
+                return ["la", "xa"]
             case "ぃ":
-                return ["li", "xi"]as string[]
+                return ["li", "xi"]
             case "ぅ":
-                return ["lu", "xu"]as string[]
+                return ["lu", "xu"]
             case "ぇ":
-                return ["le", "xe"]as string[]
+                return ["le", "xe"]
             case "ぉ":
-                return ["lo", "xo"]as string[]
+                return ["lo", "xo"]
             case "ゃ":
-                return ["lya", "xya"]as string[]
+                return ["lya", "xya"]
             case "ゅ":
-                return ["lyu", "xyu"]as string[]
+                return ["lyu", "xyu"]
             case "ょ":
-                return ["lyo", "xyo"]as string[]
+                return ["lyo", "xyo"]
             case "ゎ":
-                return ["lwa", "xwu"]as string[]
+                return ["lwa", "xwu"]
             case "っ":
-                return ["ltu", "xtu"]as string[]
+                return ["ltu", "xtu"]
             case "ゐ":
-                return ["i", "wyi"]as string[]
+                return ["i", "wyi"]
             case "ゑ":
-                return ["e", "wye"]as string[]
+                return ["e", "wye"]
             case "ヴ":
-                return ["vu"]as string[]
+                return ["vu"]
+        }
+        return ["e"]
+
+    }
+
+    const specificStringConvert = (string: string): (string | string[])[] => {
+        var result = [];
+        switch (string[0]) {
+            case "き":
+                if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
+                result.push("k" + specificConvert(string[1])[0]);
+                break;
+            case "し":
+                // if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
+                // result.push("s" + specificConvert(string[1])[0]);
+                // if (string[1] !== "ぃ") result.push("s" + specificConvert(string[1])[1]);
+                break;
+            case "ち":
+                if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
+                result.push("c" + specificConvert(string[1])[0]);
+                result.push("t" + specificConvert(string[1])[0]);
+                if (string[1] !== "ぃ") result.push("c" + specificConvert(string[1])[1]);
+                break;
+            case "て":
+                if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
+                result.push("t" + specificConvert(string[1])[1]);
+                break;
+            case "に":
+                if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
+                result.push("n" + specificConvert(string[1])[0]);
+                break;
+            case "ひ":
+                if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
+                // result.push("h" + specificConvert(string[1])[0]);
+                break;
+            case "み":
+                if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
+                result.push("m" + specificConvert(string[1])[0]);
+                break;
+            case "り":
+                if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
+                result.push("r" + specificConvert(string[1])[0]);
+                break;
+            case "う":
+                if (string[1] === "ぃ" || string[1] === "ぇ" || string[1] === "ぉ")
+                    result.push("w" + specificConvert(string[1])[2]);
+                break;
+            case "ふ":
+                if (string[1] === "ぁ" || string[1] === "ぃ" || string[1] === "ぇ")
+                    result.push("f" + specificConvert(string[1])[2]);
+                else if (string[1] === 'ぉ') result.push("fo");
+                break;
+            case "ぎ":
+                if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
+                result.push("g" + specificConvert(string[1])[0]);
+                break;
+            case "じ":
+                if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
+                if (string[1] === "ゃ" || string[1] === "ゅ" || string[1] === "ょ")
+                    result.push("j" + specificConvert(string[1])[2]);
+                result.push("z" + specificConvert(string[1])[0]);
+                result.push("j" + specificConvert(string[1])[0]);
+                break;
+            case "ぢ":
+                if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
+                result.push("d" + specificConvert(string[1])[0]);
+                break;
+            case "び":
+                if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
+                result.push("b" + specificConvert(string[1])[0]);
+                break;
+            case "で":
+                if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
+                result.push("d" + specificConvert(string[1])[1]);
+                break;
+            case "ヴ":
+                switch (string[1]) {
+                    case "ぁ":
+                        result.push("va");
+                        break;
+                    case "ぃ":
+                        result.push("vi");
+                        result.push("vyi");
+                        break;
+                    case "ぅ":
+                        result.push("vu");
+                        break;
+                    case "ぇ":
+                        result.push("ve");
+                        result.push("vye");
+                        break;
+                    case "ぉ":
+                        result.push("vo");
+                        break;
+                    case "ゃ":
+                        result.push("vya");
+                        break;
+                    case "ゅ":
+                        result.push("vyu");
+                        break;
+                    case "ょ":
+                        result.push("vyo");
+                        break;
+                }
         }
 
+        var str1 = convert(string[0]);
+        str1 = (str1) ? str1 : [];
+        var str2 = convert(string[1]);
+        for (var i = 0; i < str1.length; i++) {
+            for (var j = 0; j < str2.length; j++) {
+                result.push([str1[i], str2[j]]);
+            }
+        }
+
+        return result;
     }
 
-    type property = {
-        char: string[]
-    }
-
-    const specificConvert = (char: string) => {
-        var result = _convertList(char);
+    const convert = (char: string): string[] => {
+        var result: string[] = _convertList(char);
         if (result) result = result.slice(0);
         return result;
     }
+    const specificConvert = (char: string): string[] => {
+        var result: string[] = _specificConvertList(char)
+        if (result) result = result.slice(0);
+        return result;
+    }
+
+    return (
+        <div>
+            {createString()}
+        </div>
+    )
 }
+
+export default Key;

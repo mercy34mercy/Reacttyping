@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
+import Key from './Key'
 
 export const Game = () => {
   const [startTime, setstartTime] = React.useState(Date.now())
@@ -27,7 +28,8 @@ export const Game = () => {
 
   return (
     <div className='Game'>
-      <Inputbar  updateInputString={setinputString} answerString={inputString} updatetypeStringlen={settypeStringlen} updateanswerTypeStringlen={setanswerTypeStringlen} typeStringnum={typeStringlen} answerStringnum={answerTypeStringlen} starttime={startTime}></Inputbar>
+      <NewQuestionBox />
+      <Inputbar updateInputString={setinputString} answerString={inputString} updatetypeStringlen={settypeStringlen} updateanswerTypeStringlen={setanswerTypeStringlen} typeStringnum={typeStringlen} answerStringnum={answerTypeStringlen} starttime={startTime}></Inputbar>
     </div>
   )
 }
@@ -49,24 +51,24 @@ const Inputbar = (props: InputbarProps) => {
     ["四条河原町", "しじょうかわらまち"],
     ["葛野大路五条", "kadonooozigozyou"],
     ["川端御池", "kawabataoike"],
-    ["川端二条","kawabatanizyou"],
-    ["北白川別当","kitashirakawabettou"],
-    ["荒神橋東詰","kouzinbashihigasidume"],
-    ["下鴨本通北大路","shimogamohondourikitaoozi"],
-    ["百万遍","hyakumanben"],
-    ["大宮木津屋橋","oomiyakiduyabashi"],
-    ["大宮七条","oomiyashitizyou"],
-    ["烏丸御池","karasumaoike"],
-    ["河原町御池","kawaramatioike"],
-    ["河原町八条","kawaramatihatizyou"],
-    ["五条七本松","gozyousitihonnmatu"],
-    ["五条御前","gozyouonmae"],
-    ["四条河原町","shizyoukawaramati"],
-    ["四条西洞院","sizyounishinotouin"],
-    ["四条堀川","shizyouhorikawa"],
-    ["七条壬生","shitizyoumibu"],
-    ["堀川高辻","horikawatakatuzi"],
-    ["西大路花屋町","nishioozihanayamati"],
+    ["川端二条", "kawabatanizyou"],
+    ["北白川別当", "kitashirakawabettou"],
+    ["荒神橋東詰", "kouzinbashihigasidume"],
+    ["下鴨本通北大路", "shimogamohondourikitaoozi"],
+    ["百万遍", "hyakumanben"],
+    ["大宮木津屋橋", "oomiyakiduyabashi"],
+    ["大宮七条", "oomiyashitizyou"],
+    ["烏丸御池", "karasumaoike"],
+    ["河原町御池", "kawaramatioike"],
+    ["河原町八条", "kawaramatihatizyou"],
+    ["五条七本松", "gozyousitihonnmatu"],
+    ["五条御前", "gozyouonmae"],
+    ["四条河原町", "shizyoukawaramati"],
+    ["四条西洞院", "sizyounishinotouin"],
+    ["四条堀川", "shizyouhorikawa"],
+    ["七条壬生", "shitizyoumibu"],
+    ["堀川高辻", "horikawatakatuzi"],
+    ["西大路花屋町", "nishioozihanayamati"],
   ]
   const [counter, setCounter] = React.useState(0);
   const [questioncounter, setQuestioncounter] = React.useState(0);
@@ -90,8 +92,8 @@ const Inputbar = (props: InputbarProps) => {
     if (questioncounter > 10) {
       const endTime = Date.now()
       console.log(endTime);
-      const time:number = endTime-props.starttime
-      navigate("/result", { state: { answernum: props.answerStringnum ,time:time} })
+      const time: number = endTime - props.starttime
+      navigate("/result", { state: { answernum: props.answerStringnum, time: time } })
     }
 
     judgement(props.answerString)
@@ -167,6 +169,30 @@ const Textoutput = (props: TextOutputProps) => {
       {props.value}
     </a>
   )
+}
+
+const NewQuestionBox = () => {
+  const q:string = "ひがしおおじじゅうじょう"
+
+  const outputkey = (str: string) => {
+    return (
+      <Key question={str}></Key>
+    )
+  }
+
+  const loop = q.split("").map((s,index) => {
+    return (
+      outputkey(q[index*2]+q[index*2+1])
+  )
+  })
+
+  return(
+    <div>
+      {loop}
+    </div>
+    
+  )
+
 }
 
 export default Game;
