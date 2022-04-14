@@ -12,7 +12,7 @@ export const Startview = () => {
 
     const keyFunction = useCallback((event) => {
         console.log(event.key)
-        if (event.key == " ") {
+        if (event.key === " ") {
             navigate("game")
         }
     }, []);

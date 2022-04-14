@@ -8,7 +8,6 @@ export const Game = () => {
   const [inputString, setinputString] = React.useState("")
   const [typeStringlen, settypeStringlen] = React.useState(0)
   const [answerTypeStringlen, setanswerTypeStringlen] = React.useState(0)
-  const [randomcounter, setrandomcounter] = React.useState(0)
   const navigate = useNavigate();
 
 
@@ -94,7 +93,7 @@ const Inputbar = (props: InputbarProps) => {
       setAnswer(answerstring + value)
       setCounter(counter + 1)
       props.updateInputString("")
-    } else if (value == "") {
+    } else if (value === "") {
       props.updateInputString("")
     } else {
       setmisstype(misstype + 1)
