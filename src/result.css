@@ -1,4 +1,68 @@
-.answernum{
-    font-size: 5rem;
-    color: black;
+.result_frame{
+    height: 100vh;
+    background-image: url("../public/city.png");
+    background-size:cover;
+}
+
+.backtohome{
+    font-family: "Nico Moji";
+    font-size: 4em;
+    color: #008AE2;
+    text-align: center;
+}
+
+.resultkanban{
+    text-align: center;
+    padding-top: 4em;
+}
+
+.resultkanban img{
+    width: 30%;
+}
+
+.result{
+    background-color: #008AE2;
+    height: 40em;
+    border-radius: 2rem;
+    margin:0 30%;
+    font-family: "Nico Moji";
+}
+
+p.kana{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+p.title{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.left{
+    float: left;
+}
+
+.right{
+    text-align: right;
+}
+
+.bigbox{
+    height: 20em;
+    padding-top: 7em;
+}
+
+.box{
+    height: 10em;
+    padding: 1em 5em;
+    margin: 0px 0px;
+    height: 33%;
+}
+
+.title{
+    font-size: 3em;
+    width: 100%;
+}
+
+.kana{
+    font-size: 1.5em;
 }

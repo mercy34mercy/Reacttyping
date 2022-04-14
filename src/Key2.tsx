@@ -5,14 +5,18 @@ type keyprops = {
     question: string
 }
 
-export const Key = (props:string) => {
+export const Key2 = (props: keyprops) => {
 
     const [createdString, setcreateString] = React.useState("")
     const [str, setstr] = React.useState("")
 
     const createString = () => {
-        console.log(specificStringConvert(props))
-        return specificStringConvert(props)
+        if (props.question.length == 1) {
+            return specificStringConvert(props.question[0])
+        } else {
+            console.log(specificStringConvert(props.question[0] + props.question[1]))
+            return specificStringConvert(props.question[0] + props.question[1])
+        }
     }
 
     const _specificConvertList = (char: string): string[] => {
@@ -34,7 +38,7 @@ export const Key = (props:string) => {
             case "ぉ":
                 return ["", "", "ho"]
         }
-        return [""]
+        return ["e"]
     }
 
     const _convertList = (char: string): string[] => {
@@ -208,7 +212,7 @@ export const Key = (props:string) => {
             case "ヴ":
                 return ["vu"]
         }
-        return [""]
+        return ["e"]
 
     }
 
@@ -217,26 +221,26 @@ export const Key = (props:string) => {
         switch (string[0]) {
             case "き":
                 if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
-                result.push(["k" + specificConvert(string[1])[0]]);
+                result.push("k" + specificConvert(string[1])[0]);
                 break;
             case "し":
-                // if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
-                // result.push("s" + specificConvert(string[1])[0]);
-                // if (string[1] !== "ぃ") result.push("s" + specificConvert(string[1])[1]);
+                if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
+                result.push("s" + specificConvert(string[1])[0]);
+                if (string[1] !== "ぃ") result.push("s" + specificConvert(string[1])[1]);
                 break;
             case "ち":
                 if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
-                result.push(["c" + specificConvert(string[1])[0]]);
-                result.push(["t" + specificConvert(string[1])[0]]);
+                result.push("c" + specificConvert(string[1])[0]);
+                result.push("t" + specificConvert(string[1])[0]);
                 if (string[1] !== "ぃ") result.push("c" + specificConvert(string[1])[1]);
                 break;
             case "て":
                 if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
-                result.push(["t" + specificConvert(string[1])[1]]);
+                result.push("t" + specificConvert(string[1])[1]);
                 break;
             case "に":
                 if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
-                result.push(["n" + specificConvert(string[1])[0]]);
+                result.push("n" + specificConvert(string[1])[0]);
                 break;
             case "ひ":
                 if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
@@ -244,46 +248,43 @@ export const Key = (props:string) => {
                 break;
             case "み":
                 if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
-                result.push(["m" + specificConvert(string[1])[0]]);
+                result.push("m" + specificConvert(string[1])[0]);
                 break;
             case "り":
-                if ([string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ"]) break;
-                result.push(["r" + specificConvert(string[1])[0]]);
+                if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
+                result.push("r" + specificConvert(string[1])[0]);
                 break;
             case "う":
                 if (string[1] === "ぃ" || string[1] === "ぇ" || string[1] === "ぉ")
-                    result.push(["w" + specificConvert(string[1])[2]]);
+                    result.push("w" + specificConvert(string[1])[2]);
                 break;
             case "ふ":
                 if (string[1] === "ぁ" || string[1] === "ぃ" || string[1] === "ぇ")
-                    result.push(["f" + specificConvert(string[1])[2]]);
-                else if (string[1] === 'ぉ') result.push(["fo"]);
+                    result.push("f" + specificConvert(string[1])[2]);
+                else if (string[1] === 'ぉ') result.push("fo");
                 break;
             case "ぎ":
                 if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
-                result.push(["g" + specificConvert(string[1])[0]]);
+                result.push("g" + specificConvert(string[1])[0]);
                 break;
             case "じ":
                 // if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
-                console.log("じ*"+string)
                 if (string[1] === "ゃ" || string[1] === "ゅ" || string[1] === "ょ")
-                    console.log("じゃじゅじょ*" + string)
-                    result.push(["j" + specificConvert(string[1])[2]]);
-                // result.push(["z" + specificConvert(string[1])[0]]);
-                // result.push(["j" + specificConvert(string[1])[0]]);
-               
+                    result.push("j" + specificConvert(string[1])[2]);
+                result.push("z" + specificConvert(string[1])[0]);
+                result.push("j" + specificConvert(string[1])[0]);
                 break;
             case "ぢ":
                 if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
-                result.push(["d" + specificConvert(string[1])[0]]);
+                result.push("d" + specificConvert(string[1])[0]);
                 break;
             case "び":
                 if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
-                result.push(["b" + specificConvert(string[1])[0]]);
+                result.push("b" + specificConvert(string[1])[0]);
                 break;
             case "で":
                 if (string[1] === "ぁ" || string[1] === "ぅ" || string[1] === "ぉ") break;
-                result.push(["d" + specificConvert(string[1])[1]]);
+                result.push("d" + specificConvert(string[1])[1]);
                 break;
             case "ヴ":
                 switch (string[1]) {
@@ -311,12 +312,11 @@ export const Key = (props:string) => {
                         result.push("vyu");
                         break;
                     case "ょ":
-                        result.push(["vyo"]);
+                        result.push("vyo");
                         break;
                 }
         }
 
-        
         var str1 = convert(string[0]);
         str1 = (str1) ? str1 : [];
         var str2 = convert(string[1]);
@@ -344,4 +344,4 @@ export const Key = (props:string) => {
 
 }
 
-export default Key;
+export default Key2;

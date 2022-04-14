@@ -1,7 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
-import Key from './Key'
 
 export const Game = () => {
   const [startTime, setstartTime] = React.useState(Date.now())
@@ -9,11 +8,17 @@ export const Game = () => {
   const [inputString, setinputString] = React.useState("")
   const [typeStringlen, settypeStringlen] = React.useState(0)
   const [answerTypeStringlen, setanswerTypeStringlen] = React.useState(0)
+  const [randomcounter, setrandomcounter] = React.useState(0)
   const navigate = useNavigate();
+
+
 
   useEffect(() => {
     document.addEventListener("keydown", keyFunction, false)
   })
+
+  // const random = getRandomInt(20)
+  // setrandomcounter(random)
 
 
 
@@ -28,8 +33,7 @@ export const Game = () => {
 
   return (
     <div className='Game'>
-      <NewQuestionBox />
-      <Inputbar updateInputString={setinputString} answerString={inputString} updatetypeStringlen={settypeStringlen} updateanswerTypeStringlen={setanswerTypeStringlen} typeStringnum={typeStringlen} answerStringnum={answerTypeStringlen} starttime={startTime}></Inputbar>
+      <Inputbar  updateInputString={setinputString} answerString={inputString} updatetypeStringlen={settypeStringlen} updateanswerTypeStringlen={setanswerTypeStringlen} typeStringnum={typeStringlen} answerStringnum={answerTypeStringlen} starttime={startTime}></Inputbar>
     </div>
   )
 }
@@ -47,8 +51,8 @@ type InputbarProps = {
 const Inputbar = (props: InputbarProps) => {
   const navigate = useNavigate();
   const questions2: string[][] = [
-    ["烏丸丸太町", "からすままるたまち"],
-    ["四条河原町", "しじょうかわらまち"],
+    ["烏丸丸太町", "karasumamarutamati"],
+    ["四条河原町", "sizyoukawaramati"],
     ["葛野大路五条", "kadonooozigozyou"],
     ["川端御池", "kawabataoike"],
     ["川端二条", "kawabatanizyou"],
@@ -70,36 +74,51 @@ const Inputbar = (props: InputbarProps) => {
     ["堀川高辻", "horikawatakatuzi"],
     ["西大路花屋町", "nishioozihanayamati"],
   ]
+
+  const getRandomInt = (max: number) => {
+    return Math.floor(Math.random() * max);
+  }
+
+  const [misstype,setmisstype] = React.useState(0)
   const [counter, setCounter] = React.useState(0);
   const [questioncounter, setQuestioncounter] = React.useState(0);
+  const [questionnumber, setQuestionnumber] = React.useState(getRandomInt(20));
   const [answerstring, setAnswer] = React.useState("");
-  const [cssstyle, setCssStyle] = React.useState("")
-  const questionlength: number = questions2[questioncounter][1].length;
+  const [cssstyle, setCssStyle] = React.useState("");
+  const questionlength: number = questions2[questionnumber][1].length;
 
   const judgement = (value: string) => {
-    if (questions2[questioncounter][1][counter] === value) {
+    if (questions2[questionnumber][1][counter] === value) {
       sound()
       props.updateanswerTypeStringlen(props.answerStringnum + 1)
       setAnswer(answerstring + value)
       setCounter(counter + 1)
       props.updateInputString("")
+    } else if (value == "") {
+      props.updateInputString("")
+    } else {
+      setmisstype(misstype + 1)
+      props.updateInputString("")
     }
     // props.updatetypeStringlen(props.typeStringnum + 1)
   }
 
+
   useEffect(() => {
     console.log(props.starttime)
-    if (questioncounter > 10) {
+    if (questioncounter >= 10) {
       const endTime = Date.now()
       console.log(endTime);
       const time: number = endTime - props.starttime
-      navigate("/result", { state: { answernum: props.answerStringnum, time: time } })
+      navigate("/result", { state: { answernum: props.answerStringnum, time: time,misstyping:misstype } })
     }
 
     judgement(props.answerString)
 
     if (questionlength === counter) {
-      setQuestioncounter(questioncounter + 1)
+      const rand = getRandomInt(20)
+      setQuestionnumber(rand)
+      setQuestioncounter(questioncounter+1)
       setAnswer("")
       setCounter(0)
     }
@@ -114,7 +133,7 @@ const Inputbar = (props: InputbarProps) => {
 
 
 
-  const textOutputList = questions2[questioncounter][1].split('').map((questionChar, index) => {
+  const textOutputList = questions2[questionnumber][1].split('').map((questionChar, index) => {
     return (
       <a><Textoutput key={questionChar} valuekey={index + 1} value={questionChar} answernum={counter}> </Textoutput></a>
     )
@@ -125,7 +144,7 @@ const Inputbar = (props: InputbarProps) => {
   return (
     <div className={'inputbar ' + cssstyle}>
       <div className='game'>
-        <QuestionBox question={questions2} questionnum={questioncounter}></QuestionBox>
+        <QuestionBox question={questions2} questionnum={questionnumber}></QuestionBox>
         <div className='textOutput'>{textOutputList}</div>
       </div>
     </div>
@@ -171,28 +190,18 @@ const Textoutput = (props: TextOutputProps) => {
   )
 }
 
-const NewQuestionBox = () => {
-  const q:string = "ひがしおおじじゅうじょう"
 
-  const outputkey = (str: string) => {
-    return (
-      <Key question={str}></Key>
-    )
-  }
-
-  const loop = q.split("").map((s,index) => {
-    return (
-      outputkey(q[index*2]+q[index*2+1])
-  )
-  })
-
-  return(
-    <div>
-      {loop}
-    </div>
-    
-  )
-
-}
+// const NewQuestionBox = () => {
+//   const q: string[] = ["ひ","が","し","お","お","じ","う","じ","じょ","う" ]
+//   const loop = q.map((s, index) => {
+//     const r: (string | string[])[] = Key(q[index]+q[index+1])
+//       return (
+//         r[0][0]
+//       )
+//     })
+//   return (
+//     <a>{loop}</a>
+//   );
+// }
 
 export default Game;
