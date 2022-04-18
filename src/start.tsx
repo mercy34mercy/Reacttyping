@@ -18,11 +18,20 @@ export const Startview = () => {
     }, []);
 
     return (
-        <div className='manue'>
-            <div className='manuebar'>
-                <p><img className='kanban' src="./kanban.png"></img></p>
-                {/* <p><Link to="game"><img className='startButton' src="./start.png"></img></Link></p> */}
-                <p className='startButton'>スペースキーでスタート</p>
+        <div className='startmanuebar'>
+            <div className="sp-dsp">
+                <div>
+                    <p className='frompc'>PCからアクセスしてください</p>
+                </div>
+            </div>
+            <div className="pc-dsp">
+                <div className='manue'>
+                    <div className='manuebar'>
+                        <p><img className='kanban' src="./kanban.png"></img></p>
+                        {/* <p><Link to="game"><img className='startButton' src="./start.png"></img></Link></p> */}
+                        <p className='startButton'>スペースキーでスタート</p>
+                    </div>
+                </div>
             </div>
         </div>
     )
