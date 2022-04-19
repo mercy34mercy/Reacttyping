@@ -1,6 +1,12 @@
 import React, { useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
+import ReactGA from 'react-ga';
+const TRACKING_ID = "G-PN662GXGJ2"; // OUR_TRACKING_ID
+ReactGA.initialize(TRACKING_ID);
+ReactGA.pageview(window.location.pathname + window.location.search);
+
+
 
 export const Game = () => {
   const [startTime, setstartTime] = React.useState(Date.now())
