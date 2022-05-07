@@ -78,6 +78,16 @@ const Inputbar = (props: InputbarProps) => {
     ["七条壬生", "shitizyoumibu"],
     ["堀川高辻", "horikawatakatuzi"],
     ["西大路花屋町", "nishioozihanayamati"],
+    ["油小路東寺道","aburanokouzitouzimiti"],
+    ["河原町十条","kawaramatizyuuzyou"],
+    ["九条油小路","kuzyouaburanokouzi"],
+    ["九条大宮","kuzyouoomiya"],
+    ["九条新町","kuzyousinmati"],
+    ["十条烏丸","zyuuzyoukarasuma"],
+    ["中山稲荷","nakayamainari"],
+    ["西大路九条","nishioozikuzyou"],
+    ["八条壬生","hatizyoumibu"]
+    
   ]
 
   const getRandomInt = (max: number) => {
@@ -87,7 +97,7 @@ const Inputbar = (props: InputbarProps) => {
   const [misstype,setmisstype] = React.useState(0)
   const [counter, setCounter] = React.useState(0);
   const [questioncounter, setQuestioncounter] = React.useState(0);
-  const [questionnumber, setQuestionnumber] = React.useState(getRandomInt(20));
+  const [questionnumber, setQuestionnumber] = React.useState(getRandomInt(30));
   const [answerstring, setAnswer] = React.useState("");
   const [cssstyle, setCssStyle] = React.useState("");
   const questionlength: number = questions2[questionnumber][1].length;
