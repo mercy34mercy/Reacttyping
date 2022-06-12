@@ -41,6 +41,7 @@
   /* text-align: center; */
   height: 100%;
   background-image: url("../public/city.png");
+  /* background: bottom; */
   background-size:cover;
   /* backdrop-filter: invert(8%) sepia(99%) saturate(7044%) hue-rotate(247deg) brightness(100%) contrast(145%); */
 }

@@ -1,13 +1,22 @@
-.manue{
+.startmanuebar{
+    text-align: center;
     height: 100%;
-    background-image: url("../public/city.png");
-    background-size: cover;
-    /* padding: 10rem; */
+    width: 100%;
+        background-image: url("../public/city.png");
+            background-size: 100vw auto;
 }
 
-.startmanuebar{
-    height: 100%;
+.manuebar{
+    height: 50%;
+    width: 100%;
 }
+
+.start{
+    height: 50%;
+        width: 100%;
+}
+
+
 
 .pc-dsp{
     height: 100%;
@@ -31,12 +40,9 @@
     font-family: "Nico Moji";
 }
 
-.manuebar{
-    padding-top: 6rem;
-}
+
 
 .startButton{
-    padding-top:30rem;
     width: 100%;
     color: #008AE2;
     text-align: center;
