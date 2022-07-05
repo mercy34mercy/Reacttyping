@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getRoman } from './keyexchange';
 import './App.css';
 import ReactGA from 'react-ga';
 const TRACKING_ID = "G-PN662GXGJ2"; // OUR_TRACKING_ID
@@ -56,37 +57,37 @@ type InputbarProps = {
 const Inputbar = (props: InputbarProps) => {
   const navigate = useNavigate();
   const questions2: string[][] = [
-    ["烏丸丸太町", "karasumamarutamati"],
-    ["四条河原町", "sizyoukawaramati"],
-    ["葛野大路五条", "kadonooozigozyou"],
-    ["川端御池", "kawabataoike"],
-    ["川端二条", "kawabatanizyou"],
-    ["北白川別当", "kitashirakawabettou"],
-    ["荒神橋東詰", "kouzinbashihigasidume"],
-    ["下鴨本通北大路", "shimogamohondourikitaoozi"],
-    ["百万遍", "hyakumanben"],
-    ["大宮木津屋橋", "oomiyakiduyabashi"],
-    ["大宮七条", "oomiyashitizyou"],
-    ["烏丸御池", "karasumaoike"],
-    ["河原町御池", "kawaramatioike"],
-    ["河原町八条", "kawaramatihatizyou"],
-    ["五条七本松", "gozyousitihonnmatu"],
-    ["五条御前", "gozyouonmae"],
-    ["四条河原町", "shizyoukawaramati"],
-    ["四条西洞院", "sizyounishinotouin"],
-    ["四条堀川", "shizyouhorikawa"],
-    ["七条壬生", "shitizyoumibu"],
-    ["堀川高辻", "horikawatakatuzi"],
-    ["西大路花屋町", "nishioozihanayamati"],
-    ["油小路東寺道","aburanokouzitouzimiti"],
-    ["河原町十条","kawaramatizyuuzyou"],
-    ["九条油小路","kuzyouaburanokouzi"],
-    ["九条大宮","kuzyouoomiya"],
-    ["九条新町","kuzyousinmati"],
-    ["十条烏丸","zyuuzyoukarasuma"],
-    ["中山稲荷","nakayamainari"],
-    ["西大路九条","nishioozikuzyou"],
-    ["八条壬生","hatizyoumibu"]
+    ["烏丸丸太町", "からすままるたまち"],
+    ["四条河原町", "しじょうかわらまち"],
+    ["葛野大路五条", "かどのおおじごじょう"],
+    ["川端御池", "かわばたおいけ"],
+    ["川端二条", "かわばたにじょう"],
+    ["北白川別当", "きたしらかわべっとう"],
+    ["荒神橋東詰", "こうじんばしひがしづめ"],
+    ["下鴨本通北大路", "しもがもほんどおりきたおおじ"],
+    // ["百万遍", "hyakumanben"],
+    // ["大宮木津屋橋", "oomiyakiduyabashi"],
+    // ["大宮七条", "oomiyashitizyou"],
+    // ["烏丸御池", "karasumaoike"],
+    // ["河原町御池", "kawaramatioike"],
+    // ["河原町八条", "kawaramatihatizyou"],
+    // ["五条七本松", "gozyousitihonnmatu"],
+    // ["五条御前", "gozyouonmae"],
+    // ["四条河原町", "shizyoukawaramati"],
+    // ["四条西洞院", "sizyounishinotouin"],
+    // ["四条堀川", "shizyouhorikawa"],
+    // ["七条壬生", "shitizyoumibu"],
+    // ["堀川高辻", "horikawatakatuzi"],
+    // ["西大路花屋町", "nishioozihanayamati"],
+    // ["油小路東寺道","aburanokouzitouzimiti"],
+    // ["河原町十条","kawaramatizyuuzyou"],
+    // ["九条油小路","kuzyouaburanokouzi"],
+    // ["九条大宮","kuzyouoomiya"],
+    // ["九条新町","kuzyousinmati"],
+    // ["十条烏丸","zyuuzyoukarasuma"],
+    // ["中山稲荷","nakayamainari"],
+    // ["西大路九条","nishioozikuzyou"],
+    // ["八条壬生","hatizyoumibu"]
     
   ]
 
@@ -97,24 +98,62 @@ const Inputbar = (props: InputbarProps) => {
   const [misstype,setmisstype] = React.useState(0)
   const [counter, setCounter] = React.useState(0);
   const [questioncounter, setQuestioncounter] = React.useState(0);
-  const [questionnumber, setQuestionnumber] = React.useState(getRandomInt(30));
+  const [questionnumber, setQuestionnumber] = React.useState(getRandomInt(questions2.length));
   const [answerstring, setAnswer] = React.useState("");
   const [cssstyle, setCssStyle] = React.useState("");
-  const questionlength: number = questions2[questionnumber][1].length;
+
+  const [questionstring,setstring] = React.useState([""])
+  const questionlength: number = questionstring.length;
+
+  const convert = (str:string) => {
+    let i = 0;
+    let res = [''];
+    while (i < str.length) {
+        const [pattern, count] = getRoman(str, i);
+        const _res = [];
+        for (let j = 0; j < pattern.length; j++)
+            _res.push(...res.map(item => item + pattern[j]));
+        res = _res;
+        i += count;
+    }
+    console.log(res);
+    setstring(res)
+  }
+  
 
   const judgement = (value: string) => {
-    if (questions2[questionnumber][1][counter] === value) {
-      sound()
-      props.updateanswerTypeStringlen(props.answerStringnum + 1)
-      setAnswer(answerstring + value)
-      setCounter(counter + 1)
-      props.updateInputString("")
-    } else if (value === "") {
+    let newquestion = questionstring
+    let flag:boolean = false
+    if (value === "") {
       props.updateInputString("")
     } else {
       setmisstype(misstype + 1)
       props.updateInputString("")
     }
+    questionstring.forEach(element => {
+      if (element[counter] === value) {
+        flag = true
+      }
+    });
+
+    if(flag){
+    sound()
+    questionstring.forEach(ele =>{
+      if(ele[counter] == value){
+        console.log("正解",ele[counter])
+      }
+      else{
+        console.log("ele[counter]",ele[counter])
+        newquestion = newquestion.filter(item=> item !== ele);
+        console.log(questionstring)
+      }
+    })
+    props.updateInputString("")
+    setstring(newquestion)
+    props.updateanswerTypeStringlen(props.answerStringnum + 1)
+    setAnswer(answerstring + value)
+    setCounter(counter + 1)
+  }
     // props.updatetypeStringlen(props.typeStringnum + 1)
   }
 
@@ -129,15 +168,20 @@ const Inputbar = (props: InputbarProps) => {
     }
 
     judgement(props.answerString)
-
-    if (questionlength === counter) {
-      const rand = getRandomInt(20)
-      setQuestionnumber(rand)
-      setQuestioncounter(questioncounter+1)
-      setAnswer("")
-      setCounter(0)
+    for(let i = 0;i < questionstring.length;i++){
+      if (questionstring[i].length === counter) {
+        const rand = getRandomInt(questions2.length)
+        setQuestionnumber(rand)
+        setQuestioncounter(questioncounter+1)
+        setAnswer("")
+        setCounter(0)
+      }
     }
   })
+
+  useEffect(() => {
+    convert(questions2[questionnumber][1])
+  },[questionnumber])
 
 
   const sound = () => {
@@ -148,7 +192,7 @@ const Inputbar = (props: InputbarProps) => {
 
 
 
-  const textOutputList = questions2[questionnumber][1].split('').map((questionChar, index) => {
+  const textOutputList = questionstring[0].split('').map((questionChar, index) => {
     return (
       <a><Textoutput key={questionChar} valuekey={index + 1} value={questionChar} answernum={counter}> </Textoutput></a>
     )
@@ -189,6 +233,9 @@ const QuestionBox = (props: QuestionProps) => {
     </div>
   );
 }
+
+
+
 
 const Textoutput = (props: TextOutputProps) => {
   if (props.valuekey <= props.answernum) {

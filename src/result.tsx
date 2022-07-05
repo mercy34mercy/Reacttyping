@@ -39,14 +39,14 @@ export const Result = () => {
                         <div className='box'>
                             <p className='typingnum title'>
                                 <div className='left'>タイピング</div>
-                                <div className='right'>{answernum.answernum}</div>
+                                <div className='right'>{misstypingnum.misstyping}</div>
                             </p>
                             <p className='kana'>typing-count</p>
                         </div>
                         <div className='box'>
                             <p className='misstypingnum title'>
                                 <div className='left'>ミスタイピング</div>
-                                <div className='right'>{misstypingnum.misstyping}</div>
+                                <div className='right'>{misstypingnum.misstyping-answernum.answernum}</div>
                             </p>
                             <p className='kana'>miss-type-count</p>
                         </div>
