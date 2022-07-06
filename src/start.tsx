@@ -59,8 +59,8 @@ export const Startview = () => {
                 </div>
             </div>
             <div className="pc-dsp">
-                <div>
-                    <p onClick={handleclick}>ログイン</p>
+                <div className='login'>
+                    <p className='loginbutton' onClick={handleclick}>ログイン</p>
                 </div>
                 <div className='manuebar'>
                     <p><img className='kanban' src="./kanban.png"></img></p>

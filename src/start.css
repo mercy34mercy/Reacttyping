@@ -16,6 +16,25 @@
         width: 100%;
 }
 
+.login{
+    color: #008AE2;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: right;
+    position: relative
+}
+
+.loginbutton{
+    margin: 1rem;
+    position: absolute;
+    right: 0;
+    top:0;
+    padding: 1rem;
+    border: 4px solid;
+    border-color: #008AE2;
+    border-radius: 1rem;
+}
+
 
 
 .pc-dsp{
