@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
+import { getDatabase, ref, set } from "firebase/database";
 import './result.css'
 
 export const Result = () => {
@@ -8,6 +9,7 @@ export const Result = () => {
     const [answernum, setansernum] = useState<{ answernum: number }>(location.state as { answernum: number })
     const [time, settime] = useState<{ time: number }>(location.state as { time: number })
     const [misstypingnum, setmisstypingnum] = useState<{ misstyping: number }>(location.state as { misstyping: number })
+    const [rank,setrank] = useState(0)
     const average: number = (answernum.answernum / time.time) * 1000
     const navigate = useNavigate();
 
@@ -20,6 +22,23 @@ export const Result = () => {
             navigate("/")
         }
     }, []);
+
+
+
+    useEffect(() => {
+        writedata("",0)
+    }, [])
+
+    const writedata = (id: string, score: number) => {
+        const firedb = getDatabase()
+        console.log("送信")
+        set(ref(firedb, 'ranking/'), {
+            id: id,
+            score: score
+        });
+    }
+
+
 
     return (
         <div className='resultbackground'>
