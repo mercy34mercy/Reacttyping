@@ -33,7 +33,7 @@ export const Result = () => {
     const writedata = (id: string, score: number) => {
         const firedb = getDatabase()
         console.log("送信")
-        set(ref(firedb, 'ranking/'), {
+        set(ref(firedb, "ranking"), {
             id: id,
             score: score
         });

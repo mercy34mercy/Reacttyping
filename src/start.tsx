@@ -2,7 +2,9 @@ import React, { useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './start.css';
 import { firebaseApp } from "./firebase"
-import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, Auth, AuthProvider } from "firebase/auth";
+import { Checklogin } from './checklogin';
+import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, Auth, AuthProvider, User } from "firebase/auth";
+import { setUserId } from 'firebase/analytics';
 
 const provider = new GoogleAuthProvider();
 provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
@@ -19,7 +21,7 @@ export const Startview = () => {
 
     useEffect(() => {
         document.addEventListener("keydown", keyFunction, false)
-    }   
+    }
     )
 
     const keyFunction = useCallback((event) => {
@@ -53,30 +55,27 @@ export const Startview = () => {
 export const Login = () => {
     const [loginflag, setloginflag] = React.useState(false)
     const [auth, setauth] = React.useState(firebaseApp.fireauth)
-    const [username, setuser] = React.useState<string | null>("")
+    const [username, setusername] = React.useState<string | null>("")
+    const [user, setuser] = React.useState<User | undefined>(Checklogin(auth))
 
     useEffect(() => {
-        checklogin(auth)
-    },[])
+        check(user)
+    }, [])
 
-    const checklogin = (auth:Auth) => {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                // User is signed in, see docs for a list of available properties
-                // https://firebase.google.com/docs/reference/js/firebase.User
-                const uid = user.uid;
-                setloginflag(true)
-                setuser(user.displayName)
-                // ...
-            } else {
-                // User is signed out
-                // ...
-            }
-        });
+    const check = (user:User | undefined) => {
+        if (user != undefined) {
+            console.log(user)
+            const uid = user.uid;
+            setloginflag(true)
+            setusername(user.displayName)
+            console.log("ログインしてた")
+        } else {
+            console.log("ログインしてない")
+        }
     }
 
-    const popup = (auth: Auth, provider: AuthProvider) => {
-        signInWithPopup(auth,provider)
+const popup = (auth: Auth, provider: AuthProvider) => {
+    signInWithPopup(auth, provider)
         .then((result) => {
             // This gives you a Google Access Token. You can use it to access the Google API.
             const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -84,7 +83,7 @@ export const Login = () => {
             // The signed-in user info.
             const user = result.user;
             console.log(user)
-            setuser(user.displayName)
+            setusername(user.displayName)
             setloginflag(true)
             // ...
         }).catch((error) => {
@@ -98,23 +97,24 @@ export const Login = () => {
             // The AuthCredential type that was used.
             // const credential = GoogleAuthProvider.credentialFromError(error);
             // ...
-        })};
-    const handleclick = () => {
-        popup(auth,provider)
-    }
+        })
+};
+const handleclick = () => {
+    popup(auth, provider)
+}
 
-    if (loginflag) {
-        return (
-            <div className='displayname'>
-                <button className='logout'>ログアウト</button>
-                <p className='name'>ようこそ{username}さん</p>
-            </div>
-        )
-    } else {
-        return (
-            <div className='login'>
-                <button className='loginbutton' onClick={handleclick}>ログイン</button>
-            </div>
-        )
-    }
+if (loginflag) {
+    return (
+        <div className='displayname'>
+            <button className='logout'>ログアウト</button>
+            <p className='name'>ようこそ{username}さん</p>
+        </div>
+    )
+} else {
+    return (
+        <div className='login'>
+            <button className='loginbutton' onClick={handleclick}>ログイン</button>
+        </div>
+    )
+}
 }
