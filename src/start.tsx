@@ -68,6 +68,7 @@ export const Login = () => {
                 const uid = user.uid;
                 setloginflag(true)
                 setuser(user)
+                setusername(user.displayName)
                 // ...
             } else {
             }
