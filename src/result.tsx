@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
-import { doc, setDoc, collection} from "firebase/firestore";
+import { doc, setDoc, collection,serverTimestamp} from "firebase/firestore";
 import { firebaseApp } from "./firebase"
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, Auth, AuthProvider } from "firebase/auth";
 import './result.css'
-import { FirebaseApp } from 'firebase/app';
+import firebase from 'firebase/app';
 
 export const Result = () => {
     const location = useLocation()
@@ -34,7 +34,7 @@ export const Result = () => {
                 setuserid(user.uid)
                 setloginflag(true)
                 setuser(user.displayName)
-                writedata(user.uid, Math.round(average * 10) / 10)
+                writedata(user.uid, Math.round(average * 10) / 10,user.displayName)
                 // ...
             } else {
             }
@@ -46,11 +46,15 @@ export const Result = () => {
             navigate("/")
         }
     }, []);
+    
 
-    const writedata = async(id: string, score: number) => {
+
+    const writedata = async(id: string, score: number,name:string|null) => {
        // Add a new document in collection "cities"
         const rankRef = collection(firebaseApp.db, 'ranking');
         await setDoc(doc(rankRef), {
+            timestamp: serverTimestamp(),
+            name:name,
             id: id,
             score: score
         });
