@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Startview } from "./start";
+import { Startview } from "./Start/start";
 import { Game } from "./Game/Game";
 import { Result } from "./result";
 
