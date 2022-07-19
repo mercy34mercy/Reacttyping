@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import { doc, setDoc, collection,serverTimestamp} from "firebase/firestore";
-import { firebaseApp } from "./firebase"
+import { firebaseApp } from "../firebase"
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, Auth, AuthProvider } from "firebase/auth";
 import './result.css'
 import firebase from 'firebase/app';

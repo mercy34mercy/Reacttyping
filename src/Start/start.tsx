@@ -1,8 +1,8 @@
 import React, { useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './start.css';
-import { firebaseApp } from "./firebase"
-import { Checklogin } from './checklogin';
+import { firebaseApp } from "../firebase"
+import { Checklogin } from '../checklogin';
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, Auth, AuthProvider, User } from "firebase/auth";
 import { setUserId } from 'firebase/analytics';
 

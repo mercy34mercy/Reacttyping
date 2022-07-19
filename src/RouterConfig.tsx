@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Startview } from "./start";
-import { Game } from "./App";
-import { Result } from "./result";
+import { Startview } from "./Start/start";
+import { Game } from "./Game/Game";
+import { Result } from "./Result/result";
 
 export const RouterConfig: React.VFC = () => {
     return (
