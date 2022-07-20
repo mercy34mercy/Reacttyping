@@ -1,6 +1,6 @@
 .result_frame{
     height: 100vh;
-    background-image: url("../../public/city.png");
+    background-image: url("../../public/city.svg");
     background-size:cover;
 }
 
