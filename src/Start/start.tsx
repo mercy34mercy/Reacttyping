@@ -41,7 +41,7 @@ export const Startview = () => {
             <div className="pc-dsp">
                 <Login></Login>
                 <div className='manuebar'>
-                    <p><img className='kanban' src="./kanban.png"></img></p>
+                    <p><img className='kanban' src="./kanban.svg"></img></p>
                     {/* <p><Link to="game"><img className='startButton' src="./start.png"></img></Link></p> */}
                 </div>
                 <div className='start'>
