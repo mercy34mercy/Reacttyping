@@ -66,7 +66,7 @@ export const Result = () => {
         <div className='resultbackground'>
             <div className='result_frame'>
                 <div className='resultkanban'>
-                    <img src="./result.png" alt="結果" />
+                    <img src="./result.svg" alt="結果" />
                 </div>
                 <div className='result'>
                     <div className='bigbox'>
