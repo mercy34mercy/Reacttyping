@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './start.css';
 import { firebaseApp } from "../firebase"
 import { Checklogin } from '../checklogin';
-import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, Auth, AuthProvider, User } from "firebase/auth";
+import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, Auth, AuthProvider, User, signOut } from "firebase/auth";
 
 const provider = new GoogleAuthProvider();
 provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
@@ -55,14 +55,32 @@ export const Login = () => {
                 // ...
             })
     };
+
+    const logout = () => {
+        firebaseApp.fireauth.onAuthStateChanged((user) =>{
+            firebaseApp.fireauth.signOut().then(() => {
+                console.log("ログアウト")
+                setloginflag(false)
+            }).catch((error) => {
+                console.log(error)
+            })
+
+        })
+    
+    }
+
     const handleclick = () => {
         popup(auth, provider)
+    }
+
+    const handlelogout = () => {
+        logout()
     }
 
     if (loginflag) {
         return (
             <div className='displayname'>
-                <button className='logout'>ログアウト</button>
+                <button className='logout'  onClick={handlelogout}>ログアウト</button>
                 <p className='name'>ようこそ{username}さん</p>
             </div>
         )
