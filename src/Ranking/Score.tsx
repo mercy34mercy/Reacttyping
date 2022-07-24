@@ -1,7 +1,5 @@
 type props = {
-    name: string,
     score: number,
-    rank:number
 }
 
 export const Score = (props:props) => {
