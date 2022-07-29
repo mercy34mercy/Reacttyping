@@ -1,9 +1,11 @@
+import "./Name.css"
+
 type props = {
     name: string,
 }
 
 export const Name = (props: props) => {
     return (
-        <a>{props.name}</a>
+        <a className="rankname">{props.name}</a>
     )
 }

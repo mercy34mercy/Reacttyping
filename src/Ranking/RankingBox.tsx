@@ -2,6 +2,8 @@ import { Rank } from "./Rank"
 import { Name } from "./Name";
 import { Score } from "./Score"
 
+import "./RankingBox.css"
+
 type props = {
     rank: number
     score: number
@@ -10,7 +12,7 @@ type props = {
 
 export const RankingBox = (props:props) => {
     return (
-        <div>
+        <div className="rankbox">
             <Rank rank={props.rank}></Rank>
             <Name name={props.name}></Name>
             <Score score={props.score}></Score>
