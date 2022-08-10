@@ -57,7 +57,7 @@ export const Result = () => {
             name:name,
             id: id,
             score: score
-        });
+        }); 
     }
 
 
