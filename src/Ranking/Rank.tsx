@@ -3,12 +3,14 @@ import "./Rank.css"
 
 
 type props = {
-   rank:number
+    rank: number
 }
 
 export const Rank = (props: props) => {
     return (
-        <a className="rank">{props.rank}位</a>
+        <div className="rank">
+            <p>{props.rank}位</p>
+        </div>
 
     )
 }

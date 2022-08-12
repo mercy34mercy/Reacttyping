@@ -1,4 +1,14 @@
 .rank {
     color: black;
     font-size: large;
+    height: 100%;
+    width: 4rem;
+    background-image: url(../assets/countoryroad.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.rank p{
+    margin-top: 0.8rem;
 }

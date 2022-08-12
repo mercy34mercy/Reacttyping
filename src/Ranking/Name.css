@@ -1,4 +1,14 @@
 .rankname{
     color: black;
     font-size: large;
+    height: 100%;
+    width: 15rem;
+    display: block;
+    background-image: url(../assets/inputbar.svg);
+    background-size:cover;
+
+}
+
+.rankname p{
+    margin:1.3rem;
 }
