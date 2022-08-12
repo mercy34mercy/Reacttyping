@@ -58,7 +58,7 @@
 }
 
 .game {
-  background-image: url("../../public/inputbar.svg");
+  background-image: url("../assets/inputbar.svg");
   background-size: cover;
   width: 70rem;
   height: 20rem;

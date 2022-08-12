@@ -1,4 +1,5 @@
 import "./Name.css"
+import namebar from "../assets/inputbar.svg"
 
 type props = {
     name: string,
@@ -6,6 +7,7 @@ type props = {
 
 export const Name = (props: props) => {
     return (
-        <a className="rankname">{props.name}</a>
+
+        <img src={namebar} alt=""><a className="rankname">{props.name}</a></img>
     )
 }
