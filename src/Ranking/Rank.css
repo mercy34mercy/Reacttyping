@@ -1,4 +1,15 @@
 .rank {
-    color: black;
+    color: white;
     font-size: large;
+    height: 100%;
+    width: 6rem;
+    background-image: url(../assets/countoryroad.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: block;
+    font-family:"Nico Moji";
+}
+
+.rank p{
+    margin-top: 1.5rem;
 }

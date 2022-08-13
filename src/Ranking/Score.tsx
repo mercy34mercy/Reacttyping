@@ -4,8 +4,10 @@ type props = {
     score: number,
 }
 
-export const Score = (props:props) => {
+export const Score = (props: props) => {
     return (
-        <a className="score">{ props.score }</a>
+        <div className="score">
+            <p>{props.score}</p>
+        </div>
     )
 }

@@ -7,7 +7,8 @@ type props = {
 
 export const Name = (props: props) => {
     return (
-
-        <img src={namebar} alt=""><a className="rankname">{props.name}</a></img>
+        <div  className="rankname">
+            <p>{props.name}</p>
+        </div>
     )
 }
