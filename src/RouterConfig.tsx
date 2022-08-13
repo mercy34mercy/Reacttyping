@@ -4,6 +4,7 @@ import { Startview } from "./Start/start";
 import { Game } from "./Game/Game";
 import { Result } from "./Result/result";
 import { Ranking } from "./Ranking/Ranking";
+import { View } from "./fetchapi/View";
 
 export const RouterConfig: React.VFC = () => {
     return (
@@ -14,6 +15,7 @@ export const RouterConfig: React.VFC = () => {
                     <Route path="game" element={<Game />} />
                     <Route path="result" element={<Result/>}/>
                     <Route path="ranking" element={<Ranking/>}/>
+                    <Route path="test" element={<View/>}/>
 
                 </Routes>
             </BrowserRouter>
