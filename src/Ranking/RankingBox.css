@@ -1,6 +1,5 @@
 .rankbox{
-    width: 100em;
-    text-align: center;
-    height: 4rem;
+    height: 6rem;
     display: flex;
+    justify-content: center;
 }
