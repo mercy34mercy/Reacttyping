@@ -1,11 +1,13 @@
+import "./Score.css"
+
 type props = {
-    name: string,
     score: number,
-    rank:number
 }
 
-export const Score = (props:props) => {
+export const Score = (props: props) => {
     return (
-        <a>{ props.score }</a>
+        <div className="score">
+            <p>{props.score}</p>
+        </div>
     )
 }

@@ -47,8 +47,7 @@
 .Game {
   /* text-align: center; */
   height: 100%;
-  background-image: url("../../public/city.svg");
-  /* background: bottom; */
+  background-image: url("../assets/city.svg");
   background-size:cover;
   /* backdrop-filter: invert(8%) sepia(99%) saturate(7044%) hue-rotate(247deg) brightness(100%) contrast(145%); */
 }
@@ -58,7 +57,7 @@
 }
 
 .game {
-  background-image: url("../../public/inputbar.svg");
+  background-image: url("../assets/inputbar.svg");
   background-size: cover;
   width: 70rem;
   height: 20rem;
