@@ -2,8 +2,8 @@
     text-align: center;
     height: 100%;
     width: 100%;
-        background-image: url("../../public/city.svg");
-            background-size: 100vw auto;
+        background-image: url("../assets/city.svg");
+            background-size: cover;
 }
 
 .manuebar{
@@ -12,8 +12,8 @@
 }
 
 .start{
-    height: 50%;
-        width: 100%;
+    /* height: 50%; */
+    width: 100%;
 }
 
 .login{
@@ -108,26 +108,27 @@
     font-size: 5rem;
 }
 
+.volumebutton{
+    margin: 1rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 1rem;
+    width: 4rem;
+    color: #008AE2;
+}
+
+
+.volumebutton img{
+    width: 3rem;
+}
+.volumebutton button{
+    width: 3rem;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
 p{
-    margin: 0 0;
+    margin: 0;
 }
-
-.pc-dsp {
-    display: block;
-}
-
-.sp-dsp {
-    display: none;
-}
-
-@media only screen and (max-width : 736px) {
-    .pc-dsp {
-        display: none;
-    }
-
-    .sp-dsp {
-        display: block;
-    }
-}
-
-

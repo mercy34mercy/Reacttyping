@@ -2,10 +2,9 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import { doc, setDoc, collection,serverTimestamp} from "firebase/firestore";
-import { firebaseApp } from "../firebase"
-import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, Auth, AuthProvider } from "firebase/auth";
+import { firebaseApp } from "../Firebase/firebase"
+import { onAuthStateChanged, Auth, User } from "firebase/auth";
 import './result.css'
-import firebase from 'firebase/app';
 
 export const Result = () => {
     const location = useLocation()
@@ -16,7 +15,8 @@ export const Result = () => {
     const [userid, setuserid] = useState("")
     const [loginflag, setloginflag] = React.useState(false)
     const [auth, setauth] = React.useState(firebaseApp.fireauth)
-    const [username, setuser] = React.useState<string | null>("")
+
+    const [user,setuser] = React.useState<User>()
     const average: number = (answernum.answernum / time.time) * 1000
     const navigate = useNavigate();
 
@@ -32,8 +32,8 @@ export const Result = () => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setuserid(user.uid)
+                setuser(user)
                 setloginflag(true)
-                setuser(user.displayName)
                 writedata(user.uid, Math.round(average * 10) / 10,user.displayName)
                 // ...
             } else {
@@ -57,7 +57,7 @@ export const Result = () => {
             name:name,
             id: id,
             score: score
-        });
+        }); 
     }
 
 
@@ -90,6 +90,11 @@ export const Result = () => {
                                 <div className='right'>{misstypingnum.misstyping-answernum.answernum}</div>
                             </p>
                             <p className='kana'>miss-type-count</p>
+                        </div>
+                        <div className='box'>
+                            <div className='rank_link'>
+                                <a href="/ranking">ランキングへ</a>
+                            </div>
                         </div>
                     </div>
                 </div>

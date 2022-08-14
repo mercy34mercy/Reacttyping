@@ -35,6 +35,7 @@ export const Inputbar = (props: InputbarProps) => {
     const [answerstring, setAnswer] = React.useState("");
     const [cssstyle, setCssStyle] = React.useState("");
 
+
     const [questionstring, setstring] = React.useState([""])
     const questionlength: number = questionstring.length;
 
