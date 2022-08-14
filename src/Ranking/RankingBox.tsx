@@ -21,10 +21,11 @@ type rankdataarryay = {
 
 export const RankingBox = (props: rankdataarryay) => {
 
+    var _ = require('lodash');
     const rankingdataRef = useRef(props.rankdata)
 
 
-    const renderranking = rankingdataRef.current.map((element, index) => {
+    const renderranking = _.uniqBy(rankingdataRef.current,'name').map((element:any, index:number) => {
         console.log(element)
         return (
             <div className="rankbox" key={index}>
