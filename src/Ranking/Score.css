@@ -1,0 +1,13 @@
+.score{
+    color:white;
+    font-size: large;
+    background-image: url(../assets/score.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 5rem;
+    font-family:"Nico Moji";
+}
+
+.score p{
+    margin-top:3.5rem;
+}

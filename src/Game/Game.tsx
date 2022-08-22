@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './App.css';
 import { Inputbar } from './Inputbar';
 import ReactGA from 'react-ga';
@@ -13,19 +13,18 @@ export const Game = () => {
     const [inputString, setinputString] = React.useState("")
     const [typeStringlen, settypeStringlen] = React.useState(0)
     const [answerTypeStringlen, setanswerTypeStringlen] = React.useState(0)
+
     const navigate = useNavigate();
+
+    const location = useLocation()
+    const [volume, setvolume] = React.useState<{ volume: boolean }>(location.state as { volume: boolean })
 
 
 
     useEffect(() => {
         document.addEventListener("keydown", keyFunction, false)
+        console.log(volume)
     })
-
-    // const random = getRandomInt(20)
-    // setrandomcounter(random)
-
-
-
 
     const keyFunction = useCallback((event) => {
         if (event.key == "Escape") {
@@ -37,7 +36,7 @@ export const Game = () => {
 
     return (
         <div className='Game'>
-            <Inputbar updateInputString={setinputString} answerString={inputString} updatetypeStringlen={settypeStringlen} updateanswerTypeStringlen={setanswerTypeStringlen} typeStringnum={typeStringlen} answerStringnum={answerTypeStringlen} starttime={startTime}></Inputbar>
+            <Inputbar updateInputString={setinputString} answerString={inputString} updatetypeStringlen={settypeStringlen} updateanswerTypeStringlen={setanswerTypeStringlen} typeStringnum={typeStringlen} answerStringnum={answerTypeStringlen} starttime={startTime} volume = {volume.volume}></Inputbar>
         </div>
     )
 }

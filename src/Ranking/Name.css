@@ -1,0 +1,16 @@
+.rankname{
+    color: black;
+    font-size: large;
+    height: 100%;
+    width: 25rem;
+    display: block;
+    background-image: url(../assets/inputbar.svg);
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    font-family:"Nico Moji";
+}
+
+.rankname p{
+    margin:2.2rem;
+}
