@@ -67,10 +67,20 @@ p.title{
     font-size: 1.5em;
 }
 .rank_link{
+    width: 80%;
     text-align: center;
+    border: solid;
+    border-color: white;
+    border-radius: 8px;
+    margin: auto;
+
 }
 
-.rank_link a{
+
+
+.rank_link p{
     font-size: 3em;
     color: white;
+    cursor: pointer;
+    cursor: hand;
 }

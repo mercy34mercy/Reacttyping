@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
-import { doc, setDoc, collection,serverTimestamp} from "firebase/firestore";
+import { doc, setDoc, collection, serverTimestamp } from "firebase/firestore";
 import { firebaseApp } from "../Firebase/firebase"
 import { onAuthStateChanged, Auth, User } from "firebase/auth";
 import './result.css'
@@ -16,7 +16,7 @@ export const Result = () => {
     const [loginflag, setloginflag] = React.useState(false)
     const [auth, setauth] = React.useState(firebaseApp.fireauth)
 
-    const [user,setuser] = React.useState<User>()
+    const [user, setuser] = React.useState<User>()
     const average: number = (answernum.answernum / time.time) * 1000
     const navigate = useNavigate();
 
@@ -34,7 +34,7 @@ export const Result = () => {
                 setuserid(user.uid)
                 setuser(user)
                 setloginflag(true)
-                writedata(user.uid, Math.round(average * 10) / 10,user.displayName)
+                writedata(user.uid, Math.round(average * 10) / 10, user.displayName)
                 // ...
             } else {
             }
@@ -46,18 +46,22 @@ export const Result = () => {
             navigate("/")
         }
     }, []);
-    
+
+    const routerranking = () => {
+        navigate("/ranking")
+    }
 
 
-    const writedata = async(id: string, score: number,name:string|null) => {
-       // Add a new document in collection "cities"
+
+    const writedata = async (id: string, score: number, name: string | null) => {
+        // Add a new document in collection "cities"
         const rankRef = collection(firebaseApp.db, 'ranking');
         await setDoc(doc(rankRef), {
             timestamp: serverTimestamp(),
-            name:name,
+            name: name,
             id: id,
             score: score
-        }); 
+        });
     }
 
 
@@ -87,13 +91,13 @@ export const Result = () => {
                         <div className='box'>
                             <p className='misstypingnum title'>
                                 <div className='left'>ミスタイピング</div>
-                                <div className='right'>{misstypingnum.misstyping-answernum.answernum}</div>
+                                <div className='right'>{misstypingnum.misstyping - answernum.answernum}</div>
                             </p>
                             <p className='kana'>miss-type-count</p>
                         </div>
                         <div className='box'>
                             <div className='rank_link'>
-                                <a href="/ranking">ランキングへ</a>
+                                <p onClick={routerranking}>ランキングへ</p>
                             </div>
                         </div>
                     </div>
