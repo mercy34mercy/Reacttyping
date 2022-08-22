@@ -1,20 +1,26 @@
 import "./start.css"
 
-import React, { createContext, useContext } from "react"
+import React, { createContext, useState} from "react"
 import mute from "../assets/mute.svg"
 import max from "../assets/max.svg"
 
 
-export const Volumebutton = () => {
-    const [volumeimg, setimg] = React.useState<boolean>(true)
+export const UserContext = createContext({});
+
+type props = {
+    volume:boolean
+    setVolume:any
+}
+
+export const Volumebutton = (props:props) => {
 
 
     const handleimgchange = () => {
-        setimg(!volumeimg)
+        props.setVolume(!props.volume)
     }
 
     const changeimg = () => {
-        if (volumeimg) {
+        if (props.volume) {
             
             return max
         } else {

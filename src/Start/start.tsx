@@ -1,13 +1,17 @@
-import React, { useEffect, useCallback, useRef } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './start.css';
 import { Login } from './Login';
 import { Volumebutton } from './Volumebutton';
 
 
+
+
 export const Startview = () => {
     const navigate = useNavigate();
-
+    const [volume,setVolume] = React.useState(true)
+    const volumeRef = React.useRef(volume)
+    
 
     const getWindowDimensions = () => {
         const { innerWidth: width, innerHeight: height } = window;
@@ -28,6 +32,7 @@ export const Startview = () => {
 
 
     useEffect(() => {
+        volumeRef.current = volume
         document.addEventListener("keydown", keyFunction, false)
     }
     )
@@ -35,7 +40,9 @@ export const Startview = () => {
     const keyFunction = useCallback((event) => {
         console.log(event.key)
         if (event.key === " ") {
-            navigate("game")
+            console.log("volume:",volumeRef.current)
+            navigate("game",{state: {volume:volumeRef.current}})
+        
         }
     }, []);
 
@@ -50,7 +57,7 @@ export const Startview = () => {
     } else {
         return (
             <div className='startmanuebar'>
-                <Volumebutton></Volumebutton>
+                <Volumebutton volume={volume} setVolume = { setVolume }></Volumebutton>
                 <Login></Login>
                 <div className='manuebar'>
                     <p><img className='kanban' src="./kanban.svg"></img></p>
