@@ -13,12 +13,17 @@ export const Game = () => {
     const [inputString, setinputString] = React.useState("")
     const [typeStringlen, settypeStringlen] = React.useState(0)
     const [answerTypeStringlen, setanswerTypeStringlen] = React.useState(0)
+
     const navigate = useNavigate();
+
+    const location = useLocation()
+    const [volume, setvolume] = React.useState<{ volume: boolean }>(location.state as { volume: boolean })
 
 
 
     useEffect(() => {
         document.addEventListener("keydown", keyFunction, false)
+        console.log(volume)
     })
 
     const keyFunction = useCallback((event) => {
@@ -31,7 +36,7 @@ export const Game = () => {
 
     return (
         <div className='Game'>
-            <Inputbar updateInputString={setinputString} answerString={inputString} updatetypeStringlen={settypeStringlen} updateanswerTypeStringlen={setanswerTypeStringlen} typeStringnum={typeStringlen} answerStringnum={answerTypeStringlen} starttime={startTime} ></Inputbar>
+            <Inputbar updateInputString={setinputString} answerString={inputString} updatetypeStringlen={settypeStringlen} updateanswerTypeStringlen={setanswerTypeStringlen} typeStringnum={typeStringlen} answerStringnum={answerTypeStringlen} starttime={startTime} volume = {volume.volume}></Inputbar>
         </div>
     )
 }

@@ -6,6 +6,7 @@ import { QuestionBox } from './QuestionBox';
 import { Textoutput } from './TextOutput';
 import ReactGA from 'react-ga';
 import { questions2 } from './Questionarry';
+import { UserContext } from '../Start/Volumebutton';
 const TRACKING_ID = "G-PN662GXGJ2"; // OUR_TRACKING_ID
 ReactGA.initialize(TRACKING_ID);
 ReactGA.pageview(window.location.pathname + window.location.search);
@@ -19,6 +20,7 @@ type InputbarProps = {
     updatetypeStringlen: any;
     updateanswerTypeStringlen: any;
     starttime: number;
+    volume: boolean
 }
 
 export const Inputbar = (props: InputbarProps) => {
@@ -34,6 +36,9 @@ export const Inputbar = (props: InputbarProps) => {
     const [questionnumber, setQuestionnumber] = React.useState(getRandomInt(questions2.length));
     const [answerstring, setAnswer] = React.useState("");
     const [cssstyle, setCssStyle] = React.useState("");
+
+    //global context
+    const volumeimg = React.useContext(UserContext);
 
 
     const [questionstring, setstring] = React.useState([""])
@@ -75,6 +80,7 @@ export const Inputbar = (props: InputbarProps) => {
             questionstring.forEach(ele => {
                 if (ele[counter] == value) {
                     console.log("正解", ele[counter])
+
                 }
                 else {
                     console.log("ele[counter]", ele[counter])
@@ -88,7 +94,6 @@ export const Inputbar = (props: InputbarProps) => {
             setAnswer(answerstring + value)
             setCounter(counter + 1)
         }
-        // props.updatetypeStringlen(props.typeStringnum + 1)
     }
 
 
@@ -109,6 +114,7 @@ export const Inputbar = (props: InputbarProps) => {
                 setQuestioncounter(questioncounter + 1)
                 setAnswer("")
                 setCounter(0)
+                nextsound()
             }
         }
     })
@@ -119,8 +125,17 @@ export const Inputbar = (props: InputbarProps) => {
 
 
     const sound = () => {
-        const audio = new Audio('./Buttons.mp3')
-        audio.play()
+        if (props.volume) {
+            const audio = new Audio('./key.mp3')
+            audio.play()
+        }
+    }
+
+    const nextsound = () => {
+        if (props.volume) {
+            const next = new Audio('./ok.mp3')
+            next.play()
+        }
     }
 
 
