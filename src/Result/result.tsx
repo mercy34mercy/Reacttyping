@@ -91,6 +91,11 @@ export const Result = () => {
                             </p>
                             <p className='kana'>miss-type-count</p>
                         </div>
+                        <div className='box'>
+                            <div className='rank_link'>
+                                <a href="/ranking">ランキングへ</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div>

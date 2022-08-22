@@ -12,8 +12,8 @@ export const RouterConfig: React.VFC = () => {
                 <Routes>
                     <Route index element={<Startview />} />
                     <Route path="game" element={<Game />} />
-                    <Route path="result" element={<Result />} />
-                    <Route path="ranking" element={<Ranking />} />
+                    <Route path="result" element={<Result/>}/>
+                    <Route path="ranking" element={<Ranking/>}/>
                 </Routes>
             </BrowserRouter>
     );

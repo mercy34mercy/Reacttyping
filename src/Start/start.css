@@ -3,7 +3,7 @@
     height: 100%;
     width: 100%;
         background-image: url("../assets/city.svg");
-            background-size: 100vw auto;
+            background-size: cover;
 }
 
 .manuebar{

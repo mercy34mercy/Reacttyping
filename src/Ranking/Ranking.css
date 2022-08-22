@@ -4,3 +4,17 @@
     background-size: cover;
     height: 100%;
 }
+
+
+.scroll{
+    height: 85%;
+    overflow-y: scroll;  
+}
+
+.rankingimg{
+    height: 15%;
+}
+
+.rankingimg img{
+    height: 100%;
+}

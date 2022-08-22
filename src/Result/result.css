@@ -66,3 +66,11 @@ p.title{
 .kana{
     font-size: 1.5em;
 }
+.rank_link{
+    text-align: center;
+}
+
+.rank_link a{
+    font-size: 3em;
+    color: white;
+}
