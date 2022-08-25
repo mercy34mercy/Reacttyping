@@ -1,5 +1,5 @@
 .result_frame{
-    height: 100vh;
+    height: 100%;
     background-image: url("../assets/city.svg");
     background-size:cover;
 }
@@ -13,18 +13,23 @@
 
 .resultkanban{
     text-align: center;
-    padding-top: 4em;
+    padding-top: 1em;
 }
 
 .resultkanban img{
-    width: 30%;
+    max-width: 35rem;
+    width: 60%;
 }
 
 .result{
     background-color: #008AE2;
-    height: 40em;
+    width: 60%;
+    max-width: 40rem;
+    height: 60%;
+    max-height: 20rem;
     border-radius: 2rem;
-    margin:0 30%;
+    margin:0 auto;
+    padding: 3rem;
     font-family: "Nico Moji";
 }
 
@@ -46,16 +51,12 @@ p.title{
     text-align: right;
 }
 
-.bigbox{
-    height: 20em;
-    padding-top: 7em;
-}
 
 .box{
-    height: 10em;
-    padding: 1em 5em;
+    max-height: 7em;
+    height: 20%;
+    padding: 1em 2em;
     margin: 0px 0px;
-    height: 33%;
 }
 
 .title{

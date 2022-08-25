@@ -99,7 +99,7 @@ export const Inputbar = (props: InputbarProps) => {
 
     useEffect(() => {
         console.log(props.starttime)
-        if (questioncounter >= 11) {
+        if (questioncounter >= 2) {
             const endTime = Date.now()
             console.log(endTime);
             const time: number = endTime - props.starttime

@@ -67,13 +67,11 @@ export const Result = () => {
 
 
     return (
-        <div className='resultbackground'>
             <div className='result_frame'>
                 <div className='resultkanban'>
                     <img src="./result.svg" alt="結果" />
                 </div>
                 <div className='result'>
-                    <div className='bigbox'>
                         <div className='box'>
                             <p className='avaragenum title'>
                                 <div className='left'>へいきんキータイプ</div>
@@ -100,13 +98,11 @@ export const Result = () => {
                                 <p onClick={routerranking}>ランキングへ</p>
                             </div>
                         </div>
-                    </div>
                 </div>
                 <div>
                     <p className='backtohome'>Escapeでもどる</p>
                 </div>
             </div>
-        </div>
     );
 }
 
