@@ -4,13 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import { doc, setDoc, collection, serverTimestamp } from "firebase/firestore";
 import { firebaseApp } from "../Firebase/firebase"
 import { onAuthStateChanged, Auth, User } from "firebase/auth";
+import AverageType from './AverageType';
+import MissType from './MissType';
+import ResutlSrc from './ResutlSrc';
+import RouterRank from './RouterRank';
+import SumType from './SumType';
 import './result.css'
 
 export const Result = () => {
     const location = useLocation()
     const [answernum, setansernum] = useState<{ answernum: number }>(location.state as { answernum: number })
     const [time, settime] = useState<{ time: number }>(location.state as { time: number })
-    const [misstypingnum, setmisstypingnum] = useState<{ misstyping: number }>(location.state as { misstyping: number })
+    const [sumtypingnum, setsumtypingnum] = useState<{ misstyping: number }>(location.state as { misstyping: number })
     const [rank, setrank] = useState(0)
     const [userid, setuserid] = useState("")
     const [loginflag, setloginflag] = React.useState(false)
@@ -67,42 +72,19 @@ export const Result = () => {
 
 
     return (
-            <div className='result_frame'>
-                <div className='resultkanban'>
-                    <img src="./result.svg" alt="結果" />
-                </div>
-                <div className='result'>
-                        <div className='box'>
-                            <p className='avaragenum title'>
-                                <div className='left'>へいきんキータイプ</div>
-                                <div className='right'>{Math.round(average * 10) / 10}</div>
-                            </p>
-                            <p className='kana'>keytype-avarage</p>
-                        </div>
-                        <div className='box'>
-                            <p className='typingnum title'>
-                                <div className='left'>タイピング</div>
-                                <div className='right'>{misstypingnum.misstyping}</div>
-                            </p>
-                            <p className='kana'>typing-count</p>
-                        </div>
-                        <div className='box'>
-                            <p className='misstypingnum title'>
-                                <div className='left'>ミスタイピング</div>
-                                <div className='right'>{misstypingnum.misstyping - answernum.answernum}</div>
-                            </p>
-                            <p className='kana'>miss-type-count</p>
-                        </div>
-                        <div className='box'>
-                            <div className='rank_link'>
-                                <p onClick={routerranking}>ランキングへ</p>
-                            </div>
-                        </div>
-                </div>
-                <div>
-                    <p className='backtohome'>Escapeでもどる</p>
-                </div>
+        <div className='result_frame'>
+            <ResutlSrc></ResutlSrc>
+            <div className='result'>
+                <AverageType average={average}></AverageType>
+                <SumType sumtypingnum={sumtypingnum.misstyping}></SumType>
+                <MissType sumtypingnum={sumtypingnum.misstyping} answernum={answernum.answernum}></MissType>
+                <RouterRank routerranking={routerranking}></RouterRank>
             </div>
+            
+            <div  >
+                <p className='backtohome'>Escapeでもどる</p>
+            </div>
+        </div>
     );
 }
 

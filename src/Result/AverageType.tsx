@@ -1,8 +1,18 @@
 import React from 'react'
 
-const AverageType = () => {
+type props = {
+  average:number
+}
+
+const AverageType = (props:props) => {
   return (
-    <div>AverageType</div>
+    <div className='box'>
+      <p className='avaragenum title'>
+        <div className='left'>へいきんキータイプ</div>
+        <div className='right'>{Math.round(props.average * 10) / 10}</div>
+      </p>
+      <p className='kana'>keytype-avarage</p>
+    </div>
   )
 }
 
