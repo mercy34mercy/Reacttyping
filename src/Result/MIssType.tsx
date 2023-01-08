@@ -5,6 +5,7 @@ type props = {
   answernum:number
 }
 
+
 const MissType = (props:props) => {
   return (
     <div className='box'>
